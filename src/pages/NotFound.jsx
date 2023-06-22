@@ -19,7 +19,7 @@ const NotFound = () => {
             <p class="font-extrabold text-white text-8xl my-44 animate-bounce">
               404
             </p>
-          </div>
+          </div>  
         </div>
       </div>
     </div>

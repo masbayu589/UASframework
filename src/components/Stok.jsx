@@ -59,7 +59,17 @@ const Stok = () => {
   const [deleteBarang] = useMutation(DELETE_BARANG);
 
   const handleDelete = (id) => {
-    deleteBarang({ variables: { id } });
+    // Menampilkan alert konfirmasi sebelum menghapus barang
+    if (window.confirm("Apakah Anda yakin ingin menghapus barang ini?")) {
+      deleteBarang({ variables: { id } })
+        .then(() => {
+          // Auto reload setelah penghapusan berhasil
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.error("Error deleting barang:", error);
+        });
+    }
   };
 
   const handleAddOrUpdateBarang = (e) => {
@@ -80,6 +90,7 @@ const Stok = () => {
           setNama("");
           setJenis("");
           setJumlah("");
+          window.location.reload()
         })
         .catch((error) => {
           console.error("Error updating barang:", error);
@@ -97,6 +108,7 @@ const Stok = () => {
           setNama("");
           setJenis("");
           setJumlah("");
+          window.location.reload()
         })
         .catch((error) => {
           console.error("Error adding barang:", error);
